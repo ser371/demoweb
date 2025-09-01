@@ -1,8 +1,16 @@
-// File: src/config/swagger.js
+// File: config/swagger.js
 // Swagger configuration for API documentation
 
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+
+import path from 'path'; // 👈 1. Import the 'path' module
+import { fileURLToPath } from 'url'; // 👈 2. Import 'fileURLToPath'
+
+
+// 3. Define __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const options = {
   definition: {
@@ -29,16 +37,23 @@ const options = {
         email: 'support@example.com'
       }
     },
-    servers: [
-      {
-        url: 'http://localhost:3000',
-        description: 'Development server'
-      },
-      {
-        url: 'https://your-production-domain.com',
-        description: 'Production server'
-      }
-    ],
+    // servers: [
+    //   {
+    //     url: 'http://localhost:3000',
+    //     description: 'Development server'
+    //   },
+    //   {
+    //     url: 'https://your-production-domain.com',
+    //     description: 'Production server'
+    //   }
+    // ],
+    // After
+servers: [
+  {
+    url: '/', // Use a relative path to inherit the host and protocol
+    description: 'Development server'
+  }
+],
     tags: [
       {
         name: 'User Prompts',
@@ -160,8 +175,12 @@ const options = {
       }
     }
   },
+  // apis: ['./routes.js', './src/controller/*.js'], // Path to the API docs
+  // apis: ['../src/routes.js', '../src/utils/swagger.js'], // Path to the API docs
+    // 👇 4. Use path.join to create absolute paths
   apis: [
-    "../routes.js"   // all controllers
+    path.join(__dirname, '../routes.js'),
+    path.join(__dirname, '../src/controller/userPromptController.js'),
   ],
 };
 

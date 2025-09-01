@@ -1,4 +1,4 @@
-import { getConnect } from "../../config/db.js";
+import { getConnect } from "../config/db.js";
 
 // Existing prompt functions
 export async function getAllPrompt() {

@@ -1,4 +1,4 @@
-// File: config/swagger.js
+// File: src/config/swagger.js
 // Swagger configuration for API documentation
 
 import swaggerJsdoc from 'swagger-jsdoc';
@@ -160,8 +160,9 @@ const options = {
       }
     }
   },
-  // apis: ['./routes.js', './src/controller/*.js'], // Path to the API docs
-  apis: ['../src/routes.js', '../src/utils/swagger.js'], // Path to the API docs
+  apis: [
+    "../routes.js"   // all controllers
+  ],
 };
 
 const specs = swaggerJsdoc(options);

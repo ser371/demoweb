@@ -14,7 +14,7 @@ const config = {
 }
 
 console.log("DB config:", {
-  server: process.env.DB_SERVER,
+  DB_SERVER: process.env.DB_SERVER,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
@@ -30,7 +30,7 @@ export async function getConnect() {
         console.log(`connected successfully, ${pool}`)
         return pool;
     } catch (err) {
-         console.log("not connected to db", err);
+         console.log("not connected tos db", err);
          throw err;
     }
     

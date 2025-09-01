@@ -3,12 +3,12 @@ import OpenAI from 'openai';
 import fs from 'fs/promises';
 import path from 'path';
 
-const OPENAI_API_KEY = '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'
+// const OPENAI_API_KEY = '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'
 
 
 // Initialize OpenAI client
 const openai = new OpenAI({
-    apiKey: OPENAI_API_KEY
+    apiKey: process.env.OPENAI_API_KEY
 });
 
 
@@ -149,7 +149,7 @@ export async function createweb(req, res) {
     try {
         // Generate website code using ChatGPT
         const completion = await openai.chat.completions.create({
-            model: "gpt-4",
+            model: "gpt-3.5-turbo",
             messages: [
                 {
                     role: "system",
